@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="security.role" id="role_manager">
+            <field name="name">Administrators</field>
+        </record>
+        <record model="security.role" id="role_project_manager">
+            <field name="name">Project Execution Staff</field>
+        </record>
+        <record model="security.role" id="role_database_manager">
+            <field name="name">Database Administrators</field>
+        </record>
+    </data>
+</odoo>
+

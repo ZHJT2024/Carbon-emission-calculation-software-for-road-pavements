@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_carbon_users_form" model="ir.ui.view">
+            <field name="name">carbon.users.form</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button type="object" name="bind_user_default_data" string="Bind Default Inventory"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="parent_id"/>
+                            <field name="security_role_ids" widget="many2many_tags"/>
+                            <field name="child_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_carbon_users_tree" model="ir.ui.view">
+            <field name="name">carbon.users.tree</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="parent_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_carbon_users" model="ir.actions.act_window">
+            <field name="name">Users</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.users</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                    (0, 0, {'view_mode': 'tree', 'view_id': ref('view_carbon_users_tree')}),
+                    (0, 0, {'view_mode': 'form', 'view_id': ref('view_carbon_users_form')})]"/>
+        </record>
+    </data>
+</odoo>
+

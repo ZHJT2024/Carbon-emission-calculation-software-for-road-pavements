@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_life_cycle_inventory">
+            <field name="name">Life Cycle Inventories</field>
+            <field name="res_model">life.cycle.inventory</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create your first record.
+                </p>
+            </field>
+        </record>
+        <record id="life_cycle_inventory_form" model="ir.ui.view">
+            <field name="name">life.cycle.inventory.form</field>
+            <field name="model">life.cycle.inventory</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="name"/>
+                            <field name="remark"/>
+                            <field name="is_active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="life_cycle_inventory_tree" model="ir.ui.view">
+            <field name="name">life.cycle.inventory.tree</field>
+            <field name="model">life.cycle.inventory</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="user_id"/>
+                    <field name="name"/>
+                    <field name="remark"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
+

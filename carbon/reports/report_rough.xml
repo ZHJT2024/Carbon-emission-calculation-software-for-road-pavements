@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="action_carbon_project_report_rough"
+        model="carbon.project"
+        string="Scheme Report"
+        report_type="qweb-html"
+        name="carbon.project_report_rough"
+    />
+    <template id="project_report_rough">
+        <style>
+        </style>
+        <t t-call="web.html_container">
+            <div class="page" style="padding:100px">
+                <h1 class="title" style="text-align: center; font-weight: 700;">Road Pavement Carbon Emission Assessment Report</h1>
+                <h2 class="title" style="text-align: center; font-weight: 700;">(Scheme Report)</h2>
+                <div>
+                    <div>Project name: <t t-esc="project.name"></t></div>
+                    <div>Project location: <t t-esc="project.city_id.name"></t></div>
+                    <div>Prepared by: (Signature)</div>
+                    <div>Checked by: (Signature)</div>
+                    <div>Reviewed by: (Signature)</div>
+                    <div>Report date: <t t-esc="current_time"></t></div>
+                </div>
+                <br/>
+
+                <h2 class="">1. Basic Project Information</h2>
+                <div>Project name: <t t-esc="project.name"></t></div>
+                <div>Project location: <t t-esc="project.city_id.name"></t></div>
+                <div>Pavement area: <t t-esc="project.area"></t> m^2</div>
+
+                <h2 class="">2. Pavement Scheme</h2>
+                <h3 class="">Scheme 1: <t t-esc="scheme_data.get('name')" /></h3>
+                <div>Pavement structure:</div>
+                <table border="2px solid" width="100%">
+                    <tbody border="1px solid">
+                        <t t-foreach="scheme_data.get('constructs')" t-as="cons">
+                            <tr border="1px solid">
+                                <td class="text-center" style="border:1px solid;" colspan="1" t-esc="cons"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <div>Service life: <t t-esc="scheme_data.get('life')"/> years</div>
+
+                <h2 class="">3. References and Standards</h2>
+                <ul>
+                    <li>Environmental management - Life cycle assessment - Principles and framework (ISO 14040:2006; GB/T 24040:2008)</li>
+                    <li>Environmental management - Life cycle assessment - Requirements and guidelines (ISO 14044:2006; GB/T 24044:2008)</li>
+                    <li>2006 IPCC Guidelines for National Greenhouse Gas Inventories (2019 Refinement)</li>
+                    <li>General principles for calculation of comprehensive energy consumption (GB/T 2589-2020)</li>
+                    <li>Concrete mixer truck (GB/T 26408-2020)</li>
+                    <li>Budget quota for highway engineering (JTG/T 3832-2018)</li>
+                    <li>Quota for costs of highway construction machinery shifts (JTG/T 3833-2018)</li>
+                    <li>Fuel consumption limits and measurement methods for operating trucks (JT/T 719-2016)</li>
+                    <li>2019 baseline emission factors for China's regional power grids for emission-reduction projects (Ministry of Ecology and Environment of PRC, 2020-12-29)</li>
+                </ul>
+
+                <h2 class="">4. Carbon Emission Calculation Model</h2>
+                <h3 class="">4.1 Scope</h3>
+                <div>
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;By tracing the full life cycle of energy and raw materials from production to end of life, this software establishes a life-cycle greenhouse gas (GHG) emission model for road pavements. The model comprises four major units: Materials and mixtures (A), Construction (B), Maintenance (C), and Demolition (D). The Materials and mixtures (A) unit covers the processing and preparation of pavement materials (e.g., asphalt binder, aggregates, mineral filler, and modifiers) during asphalt pavement construction, and includes raw material production (A1), raw material transport (A2), and mixture production (A3). The Construction (B) unit accounts for mixture transport (B1) and on-site paving and compaction operations (B2). The Maintenance (C) unit considers emissions associated with pavement maintenance and management during service. The Demolition (D) unit considers emissions from milling/removal (D1) and off-site transport of waste materials (D2) at end of life.
+                </div>
+                <h3 class="">4.2 Method</h3>
+                <div>
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Different greenhouse gases vary in radiative efficiency and atmospheric lifetime, leading to different contributions to global warming. Using the 100-year global warming potential (GWP100) specified by the IPCC, the software builds an emission factor database for materials and energy. Activity data for each life-cycle process (material and energy consumption) are multiplied by the corresponding emission factors to quantify carbon dioxide equivalent (CO2e) emissions.
+                </div>
+                <h3 class="">4.3 Base Data and Assumptions</h3>
+                <div>
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;The base data and assumptions used in the model are summarized in Table 1.
+                </div>
+                <div style="text-align: center; font-weight: 700;">Table 1. Base data and assumptions used in the calculation</div>
+                <table border="2px solid" width="100%" height="482px">
+                    <thead>
+                        <tr border="1px solid" height="48.2px">
+                            <th class="text-center" style="border:1px solid;" width="10%">Unit</th>
+                            <th class="text-center" style="border:1px solid;" width="20%">Emission process</th>
+                            <th class="text-center" style="border:1px solid;" width="30%">Calculation notes</th>
+                            <th class="text-center" style="border:1px solid;">Assumptions</th>
+                        </tr>
+                    </thead>
+                    <tbody border="1px solid">
+                        <tr border="1px solid">
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Materials and mixtures (A)'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Production, processing, and distribution of input materials'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Based on surveys, life-cycle inventories (LCIs) are established for each raw material. The emission factor method is used to calculate emissions from the production of major raw materials (e.g., asphalt binder and aggregates) and from asphalt mixture production, which are aggregated to obtain total emissions for Materials and mixtures (A).'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="''"/>
+                        </tr>
+                        <tr border="1px solid">
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Construction (B)'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Mixture transport and construction equipment activities'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Includes transport of mixtures to the site as well as paving and compaction operations. The software constructs an emission factor database for construction equipment based on the mechanical energy consumption and quota data provided in JTG/T 3833-2018, and calculates emissions for Construction (B) using the user-specified equipment information.'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'For asphalt concrete and base/subbase materials, transport is assumed to use dump trucks with payload up to 15 t. The aggregate moisture content is assumed to be 4% before drying and 0.2% after leaving the drying drum; when the temperature rises to 125 C, the moisture fully evaporates. Equipment assumptions include an asphalt mixing plant with capacity up to 320 t/h, an asphalt paver with paving width up to 12.5 m, a vibratory roller up to 5 t (double steel drum), a 16-20 t pneumatic roller, and a water truck with capacity up to 10,000 L.'"/>
+                        </tr>
+                        <tr border="1px solid">
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Maintenance (C)'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Maintenance and management of the in-service asphalt pavement'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Maintenance (C) is divided into two types: micro-surfacing and milling-and-overlay. Energy use and emissions primarily involve vehicle travel, pavement maintenance activities, and related indirect environmental impacts.'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Based on the micro-surfacing construction process and relevant specifications (JTG F40-2004, JTG/T 3832-2018, and JTG/T F40-02-2005), energy use and emissions for micro-surfacing are divided into four processes: raw material production, material transport, mixture mixing, and paving. Transport distances for inputs such as emulsified asphalt and aggregates are assumed to be 200 km. The functional unit is 1 m^2 of micro-surfacing with a thickness of 10 mm; the micro-surfacing type is MS-3. For the baseline milling-and-overlay model, the functional unit is GHG emissions per unit area (or volume), with system boundaries covering raw material production, raw material transport, mixture production, and construction. Specifically: (1) milling of the existing pavement; (2) transport of reclaimed asphalt pavement (RAP) to the stockpile area (assumed to be the mixing plant for recycling), with an average transport distance of 50 km; average transport distance for raw materials such as asphalt, aggregates, cement, and mineral filler is assumed to be 200 km; (3) emulsified asphalt is used as tack coat at an application rate of 0.6 L/m^2; (4) the overlay mixture is SBS-modified asphalt mixture (including raw material production, raw material transport, and mixture production), with 5% asphalt binder and 95% aggregates; (5) the SBS mixture is transported from the mixing plant to the construction site over 50 km by a 20 t diesel truck; (6) on-site construction of tack coat and the SBS mixture. Because quota data are typically based on 1000 m^2, the analysis object for milling-and-overlay is an asphalt pavement section 5 m wide and 200 m long (total area 1000 m^2) with both milling and overlay thicknesses of 4 cm. The total volume of the overlay mixture is 1000 m^2 * 0.04 m = 40 m^3.'"/>
+                        </tr>
+                        <tr border="1px solid">
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Demolition (D)'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Milling/removal and off-site transport of waste materials at end of life'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'The demolition unit accounts for energy use and associated carbon emissions from construction equipment used during pavement removal and from hauling waste materials to the recycling facility; the calculation method is the same as for the construction stage.'"/>
+                            <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'JTG/T 3832-2018 provides notes on the number of shifts for milling machines. The software uses the quota method to calculate energy use and emissions during milling. After milling, steel bridge decks require shot blasting and rust removal before repaving; this part is converted into equipment shifts based on the work quantity.'"/>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <svg class="watermark" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+                    <text x="0" y="15" font-size="20" fill="rgba(204,204,204,0.5)" style="transform: rotate(-29deg);">Road Pavement Carbon Emission Management Platform</text>
+                </svg>
+
+                <h2 class="">5. Carbon Emission Results</h2>
+                <t t-foreach="result_data" t-as="rec">
+                    <h3 class="">5.<t t-esc="rec_index + 1" /> Carbon emission analysis for the <t t-esc="rec.get('name')" /> unit</h3>
+                    <div>
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Based on key structural layer parameters entered by the user and typical bills of quantities for similar road pavements, the software estimates carbon emissions for the <t t-esc="rec.get('name')" /> unit. Over the designed service life of <t t-esc="scheme_data.get('life')"></t> years, total emissions are <t t-esc="rec.get('res_all')"></t> tCO2e, average annual emission intensity is <t t-esc="rec.get('res_year')"></t> tCO2e/yr, emission intensity per unit area is <t t-esc="rec.get('res_area')"></t> kgCO2e/m^2, and average annual emission intensity per unit area is <t t-esc="rec.get('res_area_year')"></t> kgCO2e/(m^2*yr). Emission results for each process in the <t t-esc="rec.get('name').split('(')[0]" /> unit are shown in Table <t t-esc="rec_index + 2" />:
+                    </div>
+                    <div style="text-align: center; font-weight: 700;">Table <t t-esc="rec_index + 2" />. Carbon emission results for the <t t-esc="rec.get('name')" /> unit</div>
+                    <table border="2px solid" width="100%">
+                        <thead>
+                            <tr border="1px solid" height="48.2px">
+                                <th class="text-center" style="border:1px solid;" width="20%">Category</th>
+                                <th class="text-center" style="border:1px solid;" width="20%">Total (tCO2e)</th>
+                                <th class="text-center" style="border:1px solid;" width="20%">Average annual (tCO2e/yr)</th>
+                                <th class="text-center" style="border:1px solid;" width="20%">Per unit area (kgCO2e/m^2)</th>
+                                <th class="text-center" style="border:1px solid;" width="20%">Average annual per unit area (kgCO2e/(m^2*yr))</th>
+                            </tr>
+                        </thead>
+                        <tbody border="1px solid">
+                            <t t-foreach="rec.get('category_data')" t-as="category">
+                                <tr border="1px solid">
+                                    <td class="text-center" style="border:1px solid;" colspan="1" t-esc="category.get('category')"/>
+                                    <td class="text-center" style="border:1px solid;" colspan="1" t-esc="category.get('res_all')"/>
+                                    <td class="text-center" style="border:1px solid;" colspan="1" t-esc="category.get('res_year')"/>
+                                    <td class="text-center" style="border:1px solid;" colspan="1" t-esc="category.get('res_area')"/>
+                                    <td class="text-center" style="border:1px solid;" colspan="1" t-esc="category.get('res_area_year')"/>
+                                </tr>
+                            </t>
+                            <tr border="1px solid">
+                                <td class="text-center" style="border:1px solid;" colspan="1" t-esc="'Total'"/>
+                                <td class="text-center" style="border:1px solid;" colspan="1" t-esc="rec.get('res_all')"/>
+                                <td class="text-center" style="border:1px solid;" colspan="1" t-esc="rec.get('res_year')"/>
+                                <td class="text-center" style="border:1px solid;" colspan="1" t-esc="rec.get('res_area')"/>
+                                <td class="text-center" style="border:1px solid;" colspan="1" t-esc="rec.get('res_area_year')"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+
+                <h3>5.<t t-esc="len(result_data) + 1" /> Composition and analysis of life-cycle carbon emissions for the pavement</h3>
+                <div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;For Scheme 1 (<t t-esc="scheme_data.get('name')" />), total life-cycle carbon emissions are approximately <t t-esc="scheme_data.get('res_all')" /> tCO2e.</div>
+                <t t-foreach="images" t-as="image">
+                    <img t-att-src="image" />
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

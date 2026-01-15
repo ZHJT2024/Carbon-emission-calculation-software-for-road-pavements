@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <data noupdate="1">
+         <record model="ir.module.category" id="module_access_control">
+            <field name="name">Access Control</field>
+            <field name="description">Permission management</field>
+        </record>
+        <record model="res.groups" id="group_access_control_customer">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_access_control"/>
+        </record>
+        <record model="res.groups" id="group_access_control_manager">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="module_access_control"/>
+            <field name="implied_ids" eval="[(4, ref('access_control.group_access_control_customer'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+    </data>
+    <data>
+        <template id="assets_backend" name="access_control_assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/access_control/static/src/js/operate_access.js"/>
+                <script type="text/javascript" src="/access_control/static/src/js/operate_navigation_access.js"/>
+            </xpath>
+        </template>
+        <record model="ir.actions.client" id="operate_access">
+            <field name="name">Configure Route Permissions</field>
+            <field name="tag">operate_access</field>
+        </record>
+         <record model="ir.actions.client" id="operate_navigation_access">
+            <field name="name">Configure Navigation Permissions</field>
+            <field name="tag">operate_navigation_access</field>
+        </record>
+
+
+        <menuitem id="menu_root_access_control" name="Access Control" web_icon="access_control,static/description/icon.png" groups="group_access_control_manager"/>
+
+        <menuitem id="menu_operate_access" parent="menu_root_access_control" name="Control Panel" sequence="0"/>
+                  <menuitem id="menu_operate_access_routes" parent="menu_operate_access" name="Configure Route Permissions" sequence="0"
+                              action="operate_access"/>
+                  <menuitem id="menu_operate_navigation_access_routes" parent="menu_operate_access" name="Configure Navigation Permissions" sequence="1"
+                              action="operate_navigation_access"/>
+        <menuitem id="menu_root_access" name="Permissions" parent="menu_root_access_control" sequence="1"/>
+            <menuitem id="menu_role_access_route" parent="menu_root_access" name="Route Permissions" sequence="1"
+                      action="action_role_access_route"/>
+            <menuitem id="menu_role_access_route_button" parent="menu_root_access" name="Button Permissions" sequence="2"
+                      action="action_role_access_route_button"/>
+            <menuitem id="menu_role_access_navigation" parent="menu_root_access" name="Navigation Permissions" sequence="3"
+                      action="action_role_access_navigation"/>
+        <menuitem id="menu_access_route_config" parent="menu_root_access_control" name="Route Configuration" sequence="4"/>
+                  <menuitem id="menu_access_route" parent="menu_access_route_config" name="Routes" sequence="0" action="action_access_route"/> 
+                  <menuitem id="menu_access_route_button" parent="menu_access_route_config" name="Buttons" sequence="1" action="action_access_route_button"/>
+                  <menuitem id="menu_access_navigation" parent="menu_access_route_config" name="Navigation Items" sequence="2" action="action_access_navigation"/>
+    </data>
+</odoo>

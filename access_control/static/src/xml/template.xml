@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="access_control_template" xml:space="preserve">
+    <div t-name="operate_access_template" style="width:96%;margin: 50px auto;">
+        <style>
+            .menus {
+            <!--width: 320px;-->
+            overflow: hidden;
+            box-shadow: 1px 1px 4px gray;
+            /* border-bottom: 1px solid black;
+            border-top: 1px solid black; */
+            border: 1px solid gray;
+            border-radius: 5px;
+            }
+
+            .menu {
+            overflow: hidden;
+            height: 0px;
+            transition: all 0.3s ease;
+            }
+
+            .menu_title {
+            <!--width: 305px;-->
+            height: 50px;
+            line-height: 50px;
+            background: #fafafa;
+            color: gray;
+            font-size: 20px;
+            padding-left: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            font-weight: bold;
+            overflow: hidden;
+            }
+
+            .menu_title:hover {
+            background: #dedede;
+            color: black;
+            }
+
+            .indicator {
+            width: 50px;
+            height: 50px;
+            font-weight: bold;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-align: center;
+            }
+
+            .item {
+            <!--width: 290px;-->
+            height: 40px;
+            line-height: 40px;
+            <!--background: gray;-->
+            color: red;
+            padding-left: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            }
+
+            .item:hover {
+            <!--background: #B22222;-->
+            }
+
+            .item a {
+            width: 290px;
+            height: 40px;
+            display: block;
+            text-decoration: none;
+            color: white;
+            text-decoration: none;
+            }
+
+            .item_divider {
+            width: 322px;
+            height: 1px;
+            background: white;
+            display: block;
+            opacity: 0.8;
+            }
+
+            .menu_divider {
+            width: 100%;
+            height: 1px;
+            background: gray;
+            }
+            .one_button{
+                width: 30%;
+                <!--height:100px;-->
+                <!--background-color: brown;-->
+                <!--border: 1px solid #d2d2d2;-->
+                margin:10px;
+                display: inline-block;
+
+            }
+            .button_name{
+                 text-align: center;
+                padding: 10px;
+                width: 60%;
+                float: left;
+                <!--border-right: 1px solid #d2d2d2;-->
+                background-color: #d2d2d2;
+                color: white;
+                height: 100%;
+             }
+            .button_select{
+                padding: 10px;
+                width: 40%; float: left;
+                height:100%;
+                border: 1px solid #d2d2d2;
+                border-left:none
+            }
+            .ellipsis{
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              -webkit-box-orient: vertical;
+              word-break: break-all;
+            }
+            .selected{
+                background-color: #5FB878
+            }
+            .hidden {
+                display:none
+            }
+        </style>
+        <div style="font-size: 24px;font-weight: bold;margin-bottom: 10px;">Configure Route Permissions</div>
+         <div class="menus">
+             <div t-foreach="res" t-as="role">
+                 <div class="menu_title">
+                      <div t-att-id="'menu_title'+role.id" class="menu_title" onclick="openMenu(this)">
+                            <t t-esc="role.name"></t>
+                            <div class="indicator" t-att-id="'indicator'+role.id">^</div>
+                       </div>
+                       <a class="indicator add_route" href="javascript:void(0)" t-att-data-role-id="role.id" style="width:150px">Add Route</a>
+                 </div>
+
+
+                 <div class="menu" t-att-id="'menu'+role.id">
+                     <div t-foreach="role.routes" t-as="route">
+                         <div  class="item" t-att-data-route-id="route.id">
+                               <div class="" style="float:left;width: 93%;" t-att-id="'item'+route.id"  onclick="openMenu2(this)">
+                                    <t t-esc="route.display_name"></t>
+                                </div>
+                              <i class="fa fa-trash-o ready_delete_route" style="float:right;margin-top:12px;margin-right:20px;" t-att-id="'delete_route'+route.id" t-att-data-route-id="route.id" t-att-data-route-name="route.display_name"></i>
+                         </div>
+
+                         <div t-att-id="'content'+route.id" style="width: 90%;margin:0 auto;display:flex;flex-wrap: wrap">
+                               <a class="one_button" t-foreach="route.buttons" t-as="button" href="javascript:">
+                                   <t t-set="selected" t-value="button.selected"/>
+                                   <t t-set="active_selected" t-value="button.state === 'active'"/>
+                                   <t t-set="disable_selected" t-value="button.state === 'disable'"/>
+                                   <t t-set="invisible_selected" t-value="button.state === 'invisible'"/>
+                                   <div t-att-id="'button'+route.id+button.id" t-attf-class="button_name #{selected and 'selected'}" t-att-data-button-id="button.id" t-att-data-route-id="route.id" ><t t-esc="button.name"></t></div>
+                                   <select t-att-id="'select'+route.id+button.id" class="button_select"  t-att-data-button-id="button.id" t-att-data-route-id="route.id">
+                                      <option value ="active" t-if="active_selected" t-attf-selected="#{state=='active' and 'selected'}">Active</option>
+                                      <option value ="active" t-else="">Active</option>
+                                      <option value ="disable" t-if="disable_selected" t-attf-selected="#{state=='disable' and 'selected'}">Disable</option>
+                                      <option value ="disable" t-else="" >Disable</option>
+                                      <option value="invisible" t-if="invisible_selected" t-attf-selected="#{state=='invisible' and 'selected'}">Invisible</option>
+                                      <option value="invisible" t-else="">Invisible</option>
+                                    </select>
+                               </a>
+                        </div>
+                         <li class="item_divider"></li>
+                     </div>
+
+
+                 </div>
+                 <li class="menu_divider"></li>
+             </div>
+
+             <div id="add_route"></div>
+             <div id="confirm_delete_dialog"></div>
+         </div>
+         <script type="text/javascript">
+            var itemHeight = 40;
+            var dividerHeight = 1;
+
+            function openMenu(obj) {
+                menuTitleId = obj.id;
+                menuId = "menu" + menuTitleId.substring(10);
+                indicatorId = "indicator" + menuTitleId.substring(10);
+
+                menu = document.getElementById(menuId);
+                indicator = document.getElementById(indicatorId);
+                height = menu.style.height;
+
+                if (height == "0px" || height == "") {
+                    childAmount = menu.getElementsByTagName('div').length;
+                    dividerAmount = menu.getElementsByTagName('li').length;
+                    height = childAmount * itemHeight + dividerAmount * dividerHeight;
+                    menu.style.height = height*9/17 + "px";
+                    indicator.style.transform = "rotate(180deg)";
+                } else {
+                    menu.style.height = "0px";
+                    indicator.style.transform = "rotate(0deg)";
+                }
+            }
+            function openMenu2(obj) {
+                <!--console.log(obj.id)-->
+                <!--contentId = "content" + obj.id.substring(4);-->
+                <!--content = document.getElementById(contentId);-->
+                <!--if (content.style.display == 'none'){-->
+                    <!--content.style.display = 'block'-->
+                <!--}-->
+                <!--else{-->
+                      <!--content.style.display = "none";-->
+                <!--}-->
+
+                <!--console.log(content.style.display)-->
+
+            }
+            </script>
+    </div>
+    <div t-name="add_route">
+        <button id="add_route_modal" style="display:none" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"></button>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">
+                            Add Route Permission
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                         <select id="add_route_select" multiple="multiple" class="library_select form-control" style="width:100%">
+                            <option t-attf-value="{{route.id}}" t-foreach="routes" t-as="route"> <t
+                                    t-esc="route.display_name"></t> </option>
+                         </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default close-model" data-dismiss="modal">Close
+                        </button>
+                        <button type="button" class="btn btn-primary do_add_route" t-att-data-role-id="role_id">
+                            Confirm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div t-name="access_control_confirm_delete_dialog">
+       <div>
+            <button id="confirm_delete_btn" class="btn btn-primary btn-lg" style="display:none" data-toggle="modal" data-target="#confirmDeleteModal">
+
+            </button>
+            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="margin-top: 100px;">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">
+                                Delete
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete <span style="color:#ffbd00">“<t t-esc="name"></t>”</span>?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default close_confirm_delete_dialog  close-model" data-dismiss="modal">Cancel
+                            </button>
+                            <button type="button" class="btn btn-primary do_delete_route"  t-att-data-route-id="id">
+                                Confirm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div t-name="operate_navigation_access_template" style="width:96%;margin: 50px auto;">
+        <style>
+            .menus {
+            <!--width: 320px;-->
+            overflow: hidden;
+            box-shadow: 1px 1px 4px gray;
+            /* border-bottom: 1px solid black;
+            border-top: 1px solid black; */
+            border: 1px solid gray;
+            border-radius: 5px;
+            }
+
+            .menu {
+            overflow: hidden;
+            height: 0px;
+            transition: all 0.3s ease;
+            }
+
+            .menu_title {
+            <!--width: 305px;-->
+            height: 50px;
+            line-height: 50px;
+            background: #fafafa;
+            color: gray;
+            font-size: 20px;
+            padding-left: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            font-weight: bold;
+            overflow: hidden;
+            }
+
+            .menu_title:hover {
+            background: #dedede;
+            color: black;
+            }
+
+            .indicator {
+            width: 50px;
+            height: 50px;
+            font-weight: bold;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-align: center;
+            }
+
+            .item {
+            <!--width: 290px;-->
+            height: 40px;
+            line-height: 40px;
+            <!--background: gray;-->
+            color: red;
+            padding-left: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            }
+
+            .item:hover {
+            <!--background: #B22222;-->
+            }
+
+            .item a {
+            width: 290px;
+            height: 40px;
+            display: block;
+            text-decoration: none;
+            color: white;
+            text-decoration: none;
+            }
+
+            .item_divider {
+            width: 322px;
+            height: 1px;
+            background: white;
+            display: block;
+            opacity: 0.8;
+            }
+
+            .menu_divider {
+            width: 100%;
+            height: 1px;
+            background: gray;
+            }
+            .one_button{
+                width: 30%;
+                <!--height:100px;-->
+                <!--background-color: brown;-->
+                <!--border: 1px solid #d2d2d2;-->
+                margin:10px;
+                display: inline-block;
+
+            }
+            .button_name{
+                 text-align: center;
+                padding: 10px;
+                width: 60%;
+                float: left;
+                <!--border-right: 1px solid #d2d2d2;-->
+                background-color: #d2d2d2;
+                color: white;
+                height: 100%;
+             }
+            .button_select{
+                padding: 10px;
+                width: 40%; float: left;
+                height:100%;
+                border: 1px solid #d2d2d2;
+                border-left:none
+            }
+            .ellipsis{
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              -webkit-box-orient: vertical;
+              word-break: break-all;
+            }
+            .selected{
+                background-color: #5FB878
+            }
+            .hidden {
+                display:none
+            }
+        </style>
+        <div style="font-size: 24px;font-weight: bold;margin-bottom: 10px;">Configure Navigation Permissions</div>
+         <div class="menus">
+             <div t-foreach="res" t-as="role">
+                 <div class="menu_title">
+                      <div t-att-id="'menu_title'+role.id" class="menu_title" onclick="openMenu(this)">
+                            <t t-esc="role.name"></t>
+                            <div class="indicator" t-att-id="'indicator'+role.id">^</div>
+                       </div>
+                       <a class="indicator add_navigation" href="javascript:void(0)" t-att-data-role-id="role.id" style="width:150px">Add Navigation Item</a>
+                 </div>
+
+
+                 <div class="menu" t-att-id="'menu'+role.id">
+                     <div t-foreach="role.navigations" t-as="navigation">
+                         <div  class="item" t-att-data-navigation-id="navigation.id">
+                               <div class="" style="float:left;width: 93%;" t-att-id="'item'+navigation.id"  onclick="openMenu(this)">
+                                    <t t-esc="navigation.display_name"></t>
+                                </div>
+                              <i class="fa fa-trash-o ready_delete_navigation" style="float:right;margin-top:12px;margin-right:20px;" t-att-id="'delete_navigation'+navigation.id" t-att-data-navigation-id="navigation.id" t-att-data-navigation-name="navigation.display_name"></i>
+                         </div>
+                         <li class="item_divider"></li>
+                     </div>
+
+
+                 </div>
+                 <li class="menu_divider"></li>
+             </div>
+
+             <div id="add_navigation"></div>
+             <div id="confirm_delete_dialog"></div>
+         </div>
+         <script type="text/javascript">
+            var itemHeight = 40;
+            var dividerHeight = 1;
+
+            function openMenu(obj) {
+                menuTitleId = obj.id;
+                menuId = "menu" + menuTitleId.substring(10);
+                indicatorId = "indicator" + menuTitleId.substring(10);
+
+                menu = document.getElementById(menuId);
+                indicator = document.getElementById(indicatorId);
+                height = menu.style.height;
+
+                if (height == "0px" || height == "") {
+                    childAmount = menu.getElementsByTagName('div').length;
+                    dividerAmount = menu.getElementsByTagName('li').length;
+                    height = childAmount * itemHeight + dividerAmount * dividerHeight;
+                    menu.style.height = height*9/17 + "px";
+                    indicator.style.transform = "rotate(180deg)";
+                } else {
+                    menu.style.height = "0px";
+                    indicator.style.transform = "rotate(0deg)";
+                }
+            }
+            </script>
+    </div>
+     <div t-name="add_navigation">
+        <button id="add_navigation_modal" style="display:none" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"></button>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="max-height:130%">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">
+                            Add Navigation Permission
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                         <select id="add_navigation_select" multiple="multiple" class="library_select form-control" style="width:100%">
+                            <option t-attf-value="{{navigation.id}}" t-foreach="navigations" t-as="navigation"> <t
+                                    t-esc="navigation.display_name"></t> </option>
+                         </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default close-model" data-dismiss="modal">Close
+                        </button>
+                        <button type="button" class="btn btn-primary do_add_navigation" t-att-data-role-id="role_id">
+                            Confirm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div t-name="access_control_confirm_delete_navigation_dialog">
+       <div>
+            <button id="confirm_delete_btn" class="btn btn-primary btn-lg" style="display:none" data-toggle="modal" data-target="#confirmDeleteModal">
+
+            </button>
+            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="margin-top: 100px;">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">
+                                Delete
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete <span style="color:#ffbd00">“<t t-esc="name"></t>”</span>?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default close_confirm_delete_dialog  close-model" data-dismiss="modal">Cancel
+                            </button>
+                            <button type="button" class="btn btn-primary do_delete_navigation"  t-att-data-navigation-id="id">
+                                Confirm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</templates>

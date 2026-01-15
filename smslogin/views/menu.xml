@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_root_sms_login" name="SMS Login"/>
+            <menuitem id="menu_login_record" parent="menu_root_sms_login" name="Login Records" sequence="0" action="action_login_record"/>
+            <menuitem id="menu_verify_code" parent="menu_root_sms_login" name="Verification Codes" sequence="1" action="action_verify_code"/>
+            <menuitem id="menu_captcha_record" parent="menu_root_sms_login" name="CAPTCHA Records (Deprecated)" sequence="2" action="action_captcha_record"/>
+    </data>
+</odoo>

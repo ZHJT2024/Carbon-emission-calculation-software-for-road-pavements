@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_maintenance_life_cycle_inventory">
+            <field name="name">Maintenance Life Cycle Inventory</field>
+            <field name="res_model">maintenance.life.cycle.inventory</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create your first record.
+                </p>
+            </field>
+        </record>
+        <record id="maintenance_life_cycle_inventory_form" model="ir.ui.view">
+            <field name="name">maintenance.life.cycle.inventory.form</field>
+            <field name="model">maintenance.life.cycle.inventory</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="inventory_id"/>
+                            <field name="type_id"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="remark"/>
+                            <field name="carbon_factor"/>
+                            <field name="unit_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="maintenance_life_cycle_inventory_tree" model="ir.ui.view">
+            <field name="name">maintenance.life.cycle.inventory.tree</field>
+            <field name="model">maintenance.life.cycle.inventory</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="inventory_id"/>
+                    <field name="type_id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="remark"/>
+                    <field name="carbon_factor"/>
+                    <field name="unit_id"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
+

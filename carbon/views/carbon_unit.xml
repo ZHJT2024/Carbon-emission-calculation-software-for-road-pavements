@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_carbon_unit">
+            <field name="name">Units</field>
+            <field name="res_model">carbon.unit</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create your first record.
+                </p>
+            </field>
+        </record>
+        <record id="carbon_unit_form" model="ir.ui.view">
+            <field name="name">carbon.unit.form</field>
+            <field name="model">carbon.unit</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="type"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="carbon_unit_tree" model="ir.ui.view">
+            <field name="name">carbon.unit.tree</field>
+            <field name="model">carbon.unit</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
+

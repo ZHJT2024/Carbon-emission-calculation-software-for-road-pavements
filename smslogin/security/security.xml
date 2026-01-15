@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="ir.module.category" id="module_smslogin">
+            <field name="name">SMS Login</field>
+            <field name="description">SMS-based login</field>
+        </record>
+
+
+        <record model="res.groups" id="group_smslogin_customer">
+            <field name="name">Read-only</field>
+            <field name="category_id" ref="module_smslogin"/>
+        </record>
+        <record model="res.groups" id="group_smslogin_manager">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_smslogin"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+    </data>
+
+</odoo>

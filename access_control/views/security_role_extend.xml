@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_security_roles_route_form" model="ir.ui.view">
+            <field name="name">Security Role Route Form</field>
+            <field name="model">security.role</field>
+            <field name="inherit_id" ref="security_user_roles.security_role_view_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="//button[@name='toggle_active']" position="after">
+	                <button  type="object" name="configure_routing_permissions" class="oe_stat_button" string="Configure Route Permissions" icon="fa-bars"/> 
+	                <button  type="object" name="configure_navigation_permissions" class="oe_stat_button" string="Configure Navigation Permissions" icon="fa-bars"/> 
+              </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

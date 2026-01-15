@@ -1,0 +1,7 @@
+scenario,area,f_jc,a_jc,a_yj_jc,material_name,expected_a1,expected_a2,expected_b2
+A_values,5000.0,1.5,30.0,18.0,,2.25,5.047134300000001,
+water_low,5000.0,,18.0,,Cement-stabilized soil,,,1.5487395000000002
+water_high,5000.0,,30.0,,Cement-stabilized soil,,,1.1256984
+lime_low,5000.0,,15.0,,Lime-stabilized soil,,,1.4489250000000002
+ash_high,5000.0,,22.0,,Lime-fly ash gravel,,,0.45626289999999997
+unknown,5000.0,,25.0,,Unknown material,,,0.0

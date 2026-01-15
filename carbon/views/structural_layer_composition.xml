@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_structural_layer_composition">
+            <field name="name">Structural Layer Components</field>
+            <field name="res_model">structural.layer.composition</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create your first record.
+                </p>
+            </field>
+        </record>
+        <record id="structural_layer_composition_form" model="ir.ui.view">
+            <field name="name">structural.layer.composition.form</field>
+            <field name="model">structural.layer.composition</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="layer_ids" widget="many2many_tags"/>
+                            <field name="name"/>
+                            <field name="type"/>
+                            <field name="max_length"/>
+                            <field name="columns"/>
+                            <field name="unit"/>
+                            <field name="code"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="structural_layer_composition_tree" model="ir.ui.view">
+            <field name="name">structural.layer.composition.tree</field>
+            <field name="model">structural.layer.composition</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle"/>
+                    <field name="layer_ids" widget="many2many_tags"/>
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="unit"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
+

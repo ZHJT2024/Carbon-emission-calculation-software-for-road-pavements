@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_root_carbon_project" name="Projects"/>
+            <menuitem id="menu_project" parent="menu_root_carbon_project" name="Projects" sequence="0"/>
+                <menuitem id="menu_carbon_project" parent="menu_project" name="Projects" sequence="0" action="action_carbon_project"/>
+                <menuitem id="menu_carbon_project_scheme" parent="menu_project" name="Project Schemes" sequence="1" action="action_carbon_project_scheme"/>
+                <menuitem id="menu_carbon_project_result" parent="menu_project" name="Results" sequence="2" action="action_carbon_project_result"/>
+            <menuitem id="menu_carbon_users" parent="menu_root_carbon_project" name="Users" sequence="1" action="action_carbon_users"/>
+            <menuitem id="menu_carbon_database" parent="menu_root_carbon_project" name="Database" sequence="2"/>
+                <menuitem id="menu_carbon_stage" parent="menu_carbon_database" name="Stages" sequence="0" action="action_carbon_stage"/>
+                <menuitem id="menu_carbon_link" parent="menu_carbon_database" name="Process Steps" sequence="1" action="action_carbon_link"/>
+                <menuitem id="menu_life_cycle_inventory_type" parent="menu_carbon_database" name="Life Cycle Inventory Types" sequence="2" action="action_life_cycle_inventory_type"/>
+                <menuitem id="menu_structural_layer" parent="menu_carbon_database" name="Structural Layers" sequence="3" action="action_structural_layer"/>
+                <menuitem id="menu_structural_layer_composition" parent="menu_carbon_database" name="Structural Layer Composition" sequence="4" action="action_structural_layer_composition"/>
+                <menuitem id="menu_carbon_unit" parent="menu_carbon_database" name="Units" sequence="5" action="action_carbon_unit"/>
+                <menuitem id="menu_life_cycle_inventory" parent="menu_carbon_database" name="Life Cycle Inventories" sequence="6" action="action_life_cycle_inventory"/>
+                <menuitem id="menu_material_life_cycle_inventory" parent="menu_carbon_database" name="Life Cycle Inventory Details" sequence="7" action="action_material_life_cycle_inventory"/>
+                <menuitem id="menu_mechanical_life_cycle_inventory" parent="menu_carbon_database" name="Mechanical Life Cycle Inventory (Deprecated)" sequence="7" action="action_mechanical_life_cycle_inventory"/>
+                <menuitem id="menu_mixing_life_cycle_inventory" parent="menu_carbon_database" name="Mixing Life Cycle Inventory (Deprecated)" sequence="8" action="action_mixing_life_cycle_inventory"/>
+                <menuitem id="menu_maintenance_life_cycle_inventory" parent="menu_carbon_database" name="Maintenance Life Cycle Inventory (Deprecated)" sequence="9" action="action_maintenance_life_cycle_inventory"/>
+                <menuitem id="menu_carbon_life_cycle_inventory" parent="menu_carbon_database" name="Carbon Sink Life Cycle Inventory (Deprecated)" sequence="10" action="action_carbon_life_cycle_inventory"/>
+            <menuitem id="menu_global_district" name="Global Regions" parent="menu_root_carbon_project" sequence="3"/>
+                <menuitem id="menu_country" name="Countries" parent="menu_global_district" action="base.action_country" sequence="1"/>
+                <menuitem id="menu_state" name="States/Provinces" parent="menu_global_district" action="base.action_country_state" sequence="2"/>
+                <menuitem id="menu_res_city" name="Cities" parent="menu_global_district" action="action_res_country_state_city" sequence="3"/>
+                <menuitem id="menu_res_district" name="Districts/Counties" parent="menu_global_district" action="action_res_country_state_city_district" sequence="4"/>
+    </data>
+</odoo>

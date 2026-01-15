@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_carbon_project">
+            <field name="name">Projects</field>
+            <field name="res_model">carbon.project</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create your first record.
+                </p>
+            </field>
+        </record>
+        <record id="carbon_project_form" model="ir.ui.view">
+            <field name="name">carbon.project.form</field>
+            <field name="model">carbon.project</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button type="object" name="calc_rough" string="Compute"/>
+                    </header>
+                    <sheet>
+                        <h2>
+                            <field name="name" placeholder="Enter project name"/>
+                        </h2>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="inventory_id"/>
+                            <field name="city_id"/>
+                            <field name="life"/>
+                            <field name="area"/>
+                            <field name="type"/>
+                            <field name="mode"/>
+                            <field name="is_completed"/>
+                            <field name="calc_stage"/>
+                            <field name="res_all"/>
+                            <field name="res_area"/>
+                            <field name="res_year"/>
+                            <field name="res_area_year"/>
+                            <field name="stage_ids" widget="many2many_tags"/>
+                            <field name="fine_stage_ids" widget="many2many_tags"/>
+                            <field name="data"/>
+                            <field name="result_ids"/>
+                            <field name="scheme_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="carbon_project_tree" model="ir.ui.view">
+            <field name="name">carbon.project.tree</field>
+            <field name="model">carbon.project</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="user_id"/>
+                    <field name="inventory_id"/>
+                    <field name="name"/>
+                    <field name="city_id"/>
+                    <field name="life"/>
+                    <field name="area"/>
+                    <field name="type"/>
+                    <field name="mode"/>
+                    <field name="is_completed"/>
+                    <field name="calc_stage"/>
+                    <field name="stage_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
+

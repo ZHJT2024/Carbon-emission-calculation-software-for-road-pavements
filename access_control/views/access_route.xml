@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_access_route">
+            <field name="name">Routes</field>
+            <field name="res_model">access.route</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create your first record.
+                </p>
+            </field>
+        </record>
+        <record id="access_route_form" model="ir.ui.view">
+            <field name="name">access.route.form</field>
+            <field name="model">access.route</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="path"/>
+                            <field name="buttons" widget="many2many_tags"/>
+                            <field name="pid"/>
+                            <field name="children"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="access_route_tree" model="ir.ui.view">
+            <field name="name">access.route.tree</field>
+            <field name="model">access.route</field>
+            <field name="arch" type="xml">
+                <tree>
+                     <field name="name"/>
+                     <field name="path"/>
+                     <field name="buttons" widget="many2many_tags"/>
+                     <field name="pid"/>
+                     <field name="children" widget="many2many_tags"/>
+                     <field name="is_active" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
+

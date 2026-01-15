@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="ir.module.category" id="module_carbon_project">
+            <field name="name">Projects</field>
+            <field name="description">Carbon accounting project management</field>
+        </record>
+
+
+        <record model="res.groups" id="group_district_customer">
+            <field name="name">Regions (Read-only)</field>
+            <field name="category_id" ref="module_carbon_project"/>
+        </record>
+        <record model="res.groups" id="group_district_manager">
+            <field name="name">Regions (Manager)</field>
+            <field name="category_id" ref="module_carbon_project"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record model="res.groups" id="group_base_customer">
+            <field name="name">Base Data (Read-only)</field>
+            <field name="category_id" ref="module_carbon_project"/>
+        </record>
+        <record model="res.groups" id="group_base_manager">
+            <field name="name">Base Data (Manager)</field>
+            <field name="category_id" ref="module_carbon_project"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record model="res.groups" id="group_inventory_customer">
+            <field name="name">Inventories (Read-only)</field>
+            <field name="category_id" ref="module_carbon_project"/>
+        </record>
+        <record model="res.groups" id="group_inventory_manager">
+            <field name="name">Inventories (Manager)</field>
+            <field name="category_id" ref="module_carbon_project"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record model="res.groups" id="group_project_customer">
+            <field name="name">Projects (Read-only)</field>
+            <field name="category_id" ref="module_carbon_project"/>
+        </record>
+        <record model="res.groups" id="group_project_manager">
+            <field name="name">Projects (Manager)</field>
+            <field name="category_id" ref="module_carbon_project"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record model="res.groups" id="group_user_customer">
+            <field name="name">Users (Read-only)</field>
+            <field name="category_id" ref="module_carbon_project"/>
+        </record>
+        <record model="res.groups" id="group_user_manager">
+            <field name="name">Users (Manager)</field>
+            <field name="category_id" ref="module_carbon_project"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+calculation_model_group_calculation_customer,calculation.model.group.calculation.customer,model_calculation_model,calculation.group_calculation_customer,1,0,0,0
+calculation_model_group_calculation_manager,calculation.model.group.calculation.manager,model_calculation_model,calculation.group_calculation_manager,1,1,1,1
+
+
+

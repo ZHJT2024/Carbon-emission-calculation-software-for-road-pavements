@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_root_calculation" name="Calculation"/>
+            <menuitem id="menu_calculation_model" parent="menu_root_calculation" name="Calculation Models" sequence="0" action="action_calculation_model"/>
+    </data>
+</odoo>

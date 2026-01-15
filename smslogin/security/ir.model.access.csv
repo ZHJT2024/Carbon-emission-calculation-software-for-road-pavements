@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+login_record_group_smslogin_customer,login.record.group.smslogin.customer,model_login_record,smslogin.group_smslogin_customer,1,0,0,0
+login_record_group_smslogin_manager,login.record.group.smslogin.manager,model_login_record,smslogin.group_smslogin_manager,1,1,1,1
+
+captcha_record_group_smslogin_customer,login.record.group.smslogin.customer,model_captcha_record,smslogin.group_smslogin_customer,1,0,0,0
+captcha_record_group_smslogin_manager,captcha.record.group.smslogin.manager,model_captcha_record,smslogin.group_smslogin_manager,1,1,1,1
+
+verify_code_group_smslogin_customer,verify.code.group.smslogin.customer,model_verify_code,smslogin.group_smslogin_customer,1,0,0,0
+verify_code_group_smslogin_manager,verify.code.group.smslogin.manager,model_verify_code,smslogin.group_smslogin_manager,1,1,1,1
+
+

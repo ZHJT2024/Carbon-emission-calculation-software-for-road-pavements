@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_carbon_stage">
+            <field name="name">Stages</field>
+            <field name="res_model">carbon.stage</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create your first record.
+                </p>
+            </field>
+        </record>
+        <record id="carbon_stage_form" model="ir.ui.view">
+            <field name="name">carbon.stage.form</field>
+            <field name="model">carbon.stage</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="carbon_stage_tree" model="ir.ui.view">
+            <field name="name">carbon.stage.tree</field>
+            <field name="model">carbon.stage</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
+

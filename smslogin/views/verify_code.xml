@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_verify_code">
+            <field name="name">Verification Codes</field>
+            <field name="res_model">verify.code</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create your first record.
+                </p>
+            </field>
+        </record>
+        <record id="verify_code_form" model="ir.ui.view">
+            <field name="name">verify.code.form</field>
+            <field name="model">verify.code</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="phone"/>
+                            <field name="code"/>
+                            <field name="token"/>
+                            <field name="generation_time"/>
+                            <field name="is_expired"/>
+                            <field name="is_used"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="verify_code_tree" model="ir.ui.view">
+            <field name="name">verify.code.tree</field>
+            <field name="model">verify.code</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="phone"/>
+                    <field name="code"/>
+                    <field name="token"/>
+                    <field name="generation_time"/>
+                    <field name="is_expired"/>
+                    <field name="is_used"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
+

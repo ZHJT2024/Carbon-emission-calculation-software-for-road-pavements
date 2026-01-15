@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_role_access_navigation">
+            <field name="name">Navigation Permissions</field>
+            <field name="res_model">role.access.navigation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create your first record.
+                </p>
+            </field>
+        </record>
+        <record id="role_access_navigation_form" model="ir.ui.view">
+            <field name="name">role.access.navigation.form</field>
+            <field name="model">role.access.navigation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="path"/>
+                            <field name="navigation_id"/>
+                            <field name="role_id"/>
+                            <field name="available" widget="boolean_toggle"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="role_access_navigation_tree" model="ir.ui.view">
+            <field name="name">role.access.navigation.tree</field>
+            <field name="model">role.access.navigation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="path"/>
+                    <field name="navigation_id"/>
+                    <field name="role_id"/>
+                    <field name="available" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
+

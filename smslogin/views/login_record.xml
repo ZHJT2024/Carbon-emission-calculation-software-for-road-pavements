@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_login_record">
+            <field name="name">Login Records</field>
+            <field name="res_model">login.record</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create your first record.
+                </p>
+            </field>
+        </record>
+        <record id="login_record_form" model="ir.ui.view">
+            <field name="name">login.record.form</field>
+            <field name="model">login.record</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="sid"/>
+                            <field name="type"/>
+                            <field name="login_ip"/>
+                            <field name="login_time"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="login_record_tree" model="ir.ui.view">
+            <field name="name">login.record.tree</field>
+            <field name="model">login.record</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="user_id"/>
+                    <field name="sid"/>
+                    <field name="type"/>
+                    <field name="login_ip"/>
+                    <field name="login_time"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
+
