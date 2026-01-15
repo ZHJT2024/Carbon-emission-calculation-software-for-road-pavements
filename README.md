@@ -345,3 +345,16 @@ Controller: `access_control/controllers/main.py`
 ## 8. License
 
 This project is licensed under `LGPL-3.0-or-later`. See `LICENSE`.
+
+---
+
+## 9.Access
+
+The software is accessible via the following website:
+
+🔗 **https://carbon.roadpioneer.cn/**
+
+The platform allows users to perform pavement carbon emission calculations without requiring access to the underlying source code.
+
+---
+
